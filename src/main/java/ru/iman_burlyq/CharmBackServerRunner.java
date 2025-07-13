@@ -13,15 +13,18 @@ public class CharmBackServerRunner {
     public static void main(String[] args) throws IOException {
         try (ServerSocket serverSocket = new ServerSocket(8080);
              Socket socket = serverSocket.accept();
-             DataOutputStream rsStream = new DataOutputStream(socket.getOutputStream());
-             DataInputStream rqStream = new DataInputStream(socket.getInputStream());
+             DataInputStream requestStream = new DataInputStream(socket.getInputStream());
+             DataOutputStream responseStream = new DataOutputStream(socket.getOutputStream());
              // TODO (yakv, 2025-07-13) make chat (Scanner)
+             Scanner scanner = new Scanner(System.in)
         ) {
-            String request = rqStream.readUTF();
+            String request = requestStream.readUTF();
+
             while(!"stop".equals(request)) {
-                String response = "Hi from server!";
-                rsStream.writeUTF(response);
-                request = rqStream.readUTF();
+                System.out.println("Client request: " + request);
+                String response = scanner.nextLine();
+                responseStream.writeUTF(response);
+                request = requestStream.readUTF();
             }
         }
     }
