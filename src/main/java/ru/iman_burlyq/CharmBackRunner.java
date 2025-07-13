@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class CharmBackRunner {
     public static void main(String[] args) throws IOException {
-        try (Socket socket = new Socket("yandex.ru", 80);
+        try (Socket socket = new Socket("localhost", 8080);
              DataOutputStream rqStream = new DataOutputStream(socket.getOutputStream());
              DataInputStream rsStream = new DataInputStream(socket.getInputStream());
              Scanner scanner = new Scanner(System.in)
@@ -16,8 +16,8 @@ public class CharmBackRunner {
             while (scanner.hasNext()) {
                 String request = scanner.nextLine();
                 rqStream.writeUTF(request);
-                byte[] bytes = rsStream.readAllBytes();
-                System.out.println(new String(bytes));
+                String response = rsStream.readUTF();
+                System.out.println(response);
             }
         }
     }
