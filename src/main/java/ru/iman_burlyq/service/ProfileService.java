@@ -24,15 +24,12 @@ public class ProfileService {
     }
 
     // TODO delete, update, findAll
-    public Optional<Profile> update(Profile profile) {
-        if (profile == null || profile.getId() == null) return Optional.empty();
-        return dao.update(profile);
+    public void update(Profile profile) {
+        dao.update(profile);
     }
 
     public boolean delete(Long id) {
-        if (id == null) {
-            return false;
-        }
+        if (id == null)  return false;
 
         return dao.delete(id);
     }

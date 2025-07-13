@@ -31,13 +31,10 @@ public class ProfileDao {
     }
 
     // TODO delete, update, findAll
-    public Optional<Profile> update(Profile profile) {
+    public void update(Profile profile) {
         Long id = profile.getId();
-        if (id == null || !storage.containsKey(id)) {
-            return Optional.empty();
-        }
-        storage.put(id, profile); // заменяем старый профиль
-        return Optional.of(profile);
+        if (id == null) return;
+        storage.put(id, profile);
     }
 
     public boolean delete(Long id) {
