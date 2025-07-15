@@ -8,7 +8,7 @@ import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
-public class  ProfileDao {
+public class ProfileDao {
 
     private final ConcurrentHashMap<Long, Profile> storage;
 
@@ -28,6 +28,7 @@ public class  ProfileDao {
     }
 
     public Optional<Profile> findById(Long id) {
+
         return Optional.ofNullable(storage.get(id));
     }
 
