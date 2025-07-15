@@ -8,7 +8,7 @@ import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
-public class ProfileDao {
+public class  ProfileDao {
 
     private final ConcurrentHashMap<Long, Profile> storage;
 
@@ -23,6 +23,7 @@ public class ProfileDao {
         long id = idStorage.incrementAndGet();
         profile.setId(id);
         storage.put(id, profile);
+        System.out.println(storage.values());
         return profile;
     }
 
