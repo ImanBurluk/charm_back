@@ -4,7 +4,7 @@ public enum Commands {
     SAVE("save "),
     FIND_BY_ID("findById "),
     FIND_ALL("findAll "),
-    UPDATE("update "),
+    UPDATE(" "),
     DELETE("delete ");
 
     private final String prefix;
